@@ -1,0 +1,53 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: calibre
+  namespace: media
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: calibre
+  template:
+    metadata:
+      labels:
+        app: calibre
+    spec:
+      containers:
+      - name: calibre
+        image: msd117/librarium:1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: web
+          containerPort: 8080
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "100"
+        - name: CUSTOM_USER
+          valueFrom:
+            secretKeyRef:
+              name: calibre-secrets
+              key: calibre-ui-username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: calibre-secrets
+              key: calibre-ui-password
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: books
+          mountPath: /books
+      volumes:
+      - name: config
+        nfs:
+          server: ${NFS_SERVER}
+          path: /volume1/kubernetes/config/calibre
+      - name: books
+        nfs:
+          server: ${NFS_SERVER}
+          path: /volume1/data/media/books
