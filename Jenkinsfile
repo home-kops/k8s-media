@@ -14,7 +14,7 @@ podTemplate(
       container('jnlp') {
         git branch: 'main',
           credentialsId: 'github-home-kops-token',
-          url: 'https://github.com/home-kops/media.git'
+          url: 'https://github.com/home-kops/k8s-media.git'
       }
     }
 
