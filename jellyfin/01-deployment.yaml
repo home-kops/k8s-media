@@ -56,9 +56,8 @@ spec:
       restartPolicy: Always
       volumes:
       - name: config
-        nfs:
-          server: ${NFS_SERVER}
-          path: /volume1/kubernetes/config/jellyfin
+        persistentVolumeClaim:
+          claimName: jellyfin-config
       - name: data
         nfs:
           server: ${NFS_SERVER}

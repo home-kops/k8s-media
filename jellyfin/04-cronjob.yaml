@@ -31,9 +31,8 @@ spec:
           restartPolicy: OnFailure
           volumes:
           - name: config
-            nfs:
-              server: ${NFS_SERVER}
-              path: /volume1/kubernetes/config/jellyfin
+            persistentVolumeClaim:
+              claimName: jellyfin-config
           - name: backup
             nfs:
               server: ${NFS_SERVER}

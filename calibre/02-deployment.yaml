@@ -44,9 +44,8 @@ spec:
           mountPath: /books
       volumes:
       - name: config
-        nfs:
-          server: ${NFS_SERVER}
-          path: /volume1/kubernetes/config/calibre
+        persistentVolumeClaim:
+          claimName: calibre-config
       - name: books
         nfs:
           server: ${NFS_SERVER}
