@@ -17,16 +17,16 @@ spec:
     spec:
       containers:
       - name: calibre
-        image: msd117/librarium:0.0.3
+        image: crocodilestick/calibre-web-automated:V3.0.4
         imagePullPolicy: IfNotPresent
         ports:
         - name: web
-          containerPort: 8080
+          containerPort: 8083
         env:
         - name: PUID
           value: "1000"
         - name: PGID
-          value: "100"
+          value: "1000"
         - name: CUSTOM_USER
           valueFrom:
             secretKeyRef:
@@ -40,13 +40,19 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
-        - name: books
-          mountPath: /books
+        - name: library
+          mountPath: /calibre-library 
+        - name: new-books
+          mountPath: /cwa-book-ingest
       volumes:
       - name: config
         persistentVolumeClaim:
           claimName: calibre-config
-      - name: books
+      - name: library
         nfs:
           server: ${NFS_SERVER}
-          path: /volume1/data/media/books
+          path: /volume1/data/media/books/library
+      - name: new-books
+        nfs:
+          server: ${NFS_SERVER}
+          path: /volume1/data/media/books/new
