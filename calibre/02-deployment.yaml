@@ -57,7 +57,7 @@ spec:
           server: ${NFS_SERVER}
           path: /volume1/data/media/books/new
       tolerations:
-      - key: "tier"
+      - key: "role"
         operator: "Equal"
         value: "node-m"
         effect: "NoSchedule"

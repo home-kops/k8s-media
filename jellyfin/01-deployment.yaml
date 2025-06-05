@@ -63,7 +63,7 @@ spec:
           server: ${NFS_SERVER}
           path: /volume1/data/media
       tolerations:
-      - key: "tier"
+      - key: "role"
         operator: "Equal"
         value: "node-s"
         effect: "NoSchedule"
