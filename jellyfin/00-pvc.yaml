@@ -4,7 +4,7 @@ metadata:
   name: jellyfin-config
   namespace: media
 spec:
-  storageClassName: nfs-sc
+  storageClassName: local-path
   accessModes:
   - ReadWriteOnce
   resources:
