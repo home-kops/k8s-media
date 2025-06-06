@@ -62,10 +62,6 @@ spec:
         nfs:
           server: ${NFS_SERVER}
           path: /volume1/data/media
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 100
-        fsGroup: 100
       tolerations:
       - key: "role"
         operator: "Equal"
