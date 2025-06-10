@@ -18,6 +18,8 @@ spec:
       labels:
         app: jellyfin
     spec:
+      nodeSelector:
+        size: m
       containers:
       - name: jellyfin
         image: ghcr.io/linuxserver/jellyfin:10.10.7
@@ -62,8 +64,3 @@ spec:
         nfs:
           server: ${NFS_SERVER}
           path: /volume1/data/media
-      tolerations:
-      - key: "role"
-        operator: "Equal"
-        value: "node-m"
-        effect: "NoSchedule"
