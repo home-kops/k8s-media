@@ -1,18 +1,12 @@
-podTemplate(
-  serviceAccount: 'jenkins-admin',
-  containers: [
-    containerTemplate(
-      name: 'jnlp',
-      image: 'msd117/jenkins-generic-agent:0.0.1',
-      ttyEnabled: true
-    )
-  ],
-  namespace: 'devops-tools',
-  nodeSelector: 'size=s'
-) {
-  node(POD_LABEL) {
+pipeline {
+  agent {
+    kubernetes {
+      label 'agent-s'
+    }
+  }
+  stages {
     stage('Clone') {
-      container('jnlp') {
+      steps {
         git branch: 'main',
           credentialsId: 'github-home-kops-token',
           url: 'https://github.com/home-kops/k8s-media.git'
@@ -20,7 +14,7 @@ podTemplate(
     }
 
     stage('Verify') {
-      container('jnlp') {
+      steps {
         withCredentials(
           [
             string(credentialsId: 'server1-domain', variable: 'DOMAIN'),
