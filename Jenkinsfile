@@ -32,22 +32,5 @@ podTemplate(
         }
       }
     }
-
-    stage('Deploy') {
-      container('jnlp') {
-        if (env.BRANCH_NAME == 'main') {
-          withCredentials(
-            [
-              string(credentialsId: 'server1-domain', variable: 'DOMAIN'),
-              string(credentialsId: 'nfs1-server', variable: 'NFS_SERVER')
-            ]
-          ) {
-            sh './tooling/deploy'
-          }
-        } else {
-          echo "Skipping deployment as the branch is not 'main'."
-        }
-      }
-    }
   }
 }
