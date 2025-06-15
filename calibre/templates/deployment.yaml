@@ -2,11 +2,8 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: calibre
-  namespace: media
 spec:
-  replicas: 1
-  strategy:
-    type: Recreate
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: calibre
@@ -16,19 +13,18 @@ spec:
         app: calibre
     spec:
       nodeSelector:
-        size: s
+      {{- toYaml .Values.deployment.nodeSelector}}
       containers:
       - name: calibre
-        image: crocodilestick/calibre-web-automated:V3.0.4
-        imagePullPolicy: IfNotPresent
+        image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
         ports:
         - name: web
           containerPort: 8083
         env:
-        - name: PUID
-          value: "1000"
-        - name: PGID
-          value: "1000"
+        {{- range .Values.deployment.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
         - name: CUSTOM_USER
           valueFrom:
             secretKeyRef:
@@ -49,7 +45,7 @@ spec:
       volumes:
       - name: config
         persistentVolumeClaim:
-          claimName: calibre-config
+          claimName: calibre-config-pvc
       - name: library
         nfs:
           server: {{ .Values.nfs }}

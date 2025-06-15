@@ -20,10 +20,10 @@ spec:
         securityContext:
           privileged: true
         env:
-          {{- range .Values.deployment.env }}
-          - name: {{ .name }}
-            value: {{ .value | quote }}
-          {{- end }}
+        {{- range .Values.deployment.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
         ports:
         - containerPort: 8096
         volumeMounts:

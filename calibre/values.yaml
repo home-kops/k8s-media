@@ -1,0 +1,25 @@
+pvc:
+  storageClassName: nfs-sc
+  accessModes:
+  - ReadWriteMany
+  size: 1Gi
+
+deployment:
+  nodeSelector:
+    size: s
+  image:
+    repository: crocodilestick/calibre-web-automated
+    tag: "V3.0.4"
+  replicas: 1
+  env:
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+
+service:
+  type: ClusterIP
+  port: 8083
+
+ingressroute:
+  host: "example.com"

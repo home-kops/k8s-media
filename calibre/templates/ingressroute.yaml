@@ -1,7 +1,7 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: jellyfin
+  name: calibre
 spec:
   entryPoints:
   - websecure
@@ -9,5 +9,5 @@ spec:
     - match: Host(`{{ .Values.ingressroute.host }}`)
       kind: Rule
       services:
-      - name: jellyfin
+      - name: calibre
         port: {{ .Values.service.port }}
