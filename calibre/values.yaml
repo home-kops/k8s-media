@@ -22,3 +22,4 @@ service:
   port: 8083
 
 domain: "example.com"
+nfs: "nfs-server.example.com"

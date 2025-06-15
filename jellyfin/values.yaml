@@ -24,6 +24,7 @@ service:
   port: 8096
 
 domain: "example.com"
+nfs: "nfs-server.example.com"
 
 backup:
   schedule: "0 15 * * *"
