@@ -6,7 +6,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-    - match: Host(`{{ .Values.ingressroute.host }}`)
+    - match: Host(`calibre.{{ .Values.domain }}`)
       kind: Rule
       services:
       - name: calibre

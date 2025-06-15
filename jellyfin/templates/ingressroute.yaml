@@ -6,7 +6,7 @@ spec:
   entryPoints:
   - websecure
   routes:
-    - match: Host(`{{ .Values.ingressroute.host }}`)
+    - match: Host(`jellyfin.{{ .Values.domain }}`)
       kind: Rule
       services:
       - name: jellyfin
