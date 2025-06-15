@@ -16,4 +16,17 @@ spec:
             - -c
             - |
 {{ .Values.backup.command | indent 14 }}
+            volumeMounts:
+            - name: backup
+              mountPath: /backup
+            - name: config
+              mountPath: /config
           restartPolicy: OnFailure
+          volumes:
+          - name: config
+            persistentVolumeClaim:
+              claimName: jellyfin-config
+          - name: backup
+            nfs:
+              server: {{ .Values.nfs }}
+              path: /volume1/kubernetes/backup/jellyfin
