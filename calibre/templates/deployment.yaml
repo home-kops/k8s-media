@@ -12,8 +12,10 @@ spec:
       labels:
         app: calibre
     spec:
+      {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
-      {{- toYaml .Values.deployment.nodeSelector}}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: calibre
         image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
