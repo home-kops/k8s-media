@@ -29,7 +29,7 @@ backup:
   schedule: "0 15 * * *"
   image:
     repository: busybox
-    tag: "1.36"
+    tag: "1.37"
   command: |
     echo "Starting backup at $(date)"
     tar -czf /backup/jellyfin-$(date +%Y%m%d%H%M%S).tar.gz /config
