@@ -15,5 +15,5 @@ spec:
             - /bin/sh
             - -c
             - |
-              {{ .Values.backup.command | indent 14 }}
+{{ .Values.backup.command | indent 14 }}
           restartPolicy: OnFailure
