@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jellyfin
+spec:
+  entryPoints:
+  - websecure
+  routes:
+    - match: Host(`{{ .Values.ingressroute.host }}`)
+      kind: Rule
+      services:
+      - name: jellyfin
+        port: 8096
