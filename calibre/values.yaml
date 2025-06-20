@@ -16,10 +16,14 @@ deployment:
     value: "1000"
   - name: PGID
     value: "1000"
+  - name: CUSTOM_USER
+    value: <path:secret/data/media/calibre#user>
+  - name: PASSWORD
+    value: <path:secret/data/media/calibre#password>
 
 service:
   type: ClusterIP
   port: 8083
 
-domain: "example.com"
-nfs: "nfs-server.example.com"
+domain: <path:secret/data/infra#domain>
+nfs: <path:secret/data/infra#nfs>

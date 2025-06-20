@@ -27,16 +27,6 @@ spec:
         - name: {{ .name }}
           value: {{ .value | quote }}
         {{- end }}
-        - name: CUSTOM_USER
-          valueFrom:
-            secretKeyRef:
-              name: calibre-secrets
-              key: calibre-ui-username
-        - name: PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: calibre-secrets
-              key: calibre-ui-password
         volumeMounts:
         - name: config
           mountPath: /config

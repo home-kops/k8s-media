@@ -23,8 +23,8 @@ service:
   type: ClusterIP
   port: 8096
 
-domain: "example.com"
-nfs: "nfs-server.example.com"
+domain: <path:secret/data/infra#domain>
+nfs: <path:secret/data/infra#nfs>
 
 backup:
   schedule: "0 15 * * *"
