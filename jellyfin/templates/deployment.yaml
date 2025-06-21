@@ -16,7 +16,6 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      nodeSelector:
       containers:
       - name: jellyfin
         image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
