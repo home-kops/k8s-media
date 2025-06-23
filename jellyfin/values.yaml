@@ -1,7 +1,7 @@
 pvc:
   storageClassName: nfs-sc
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   size: 10Gi
 
 deployment:
