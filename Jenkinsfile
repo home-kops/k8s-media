@@ -17,6 +17,13 @@ pipeline {
       steps {
         container('jnlp') {
           sh '''
+            echo "[DEBUG] PATH: $PATH"
+            ls -l /usr/local/bin/
+            which helm || echo "[DEBUG] helm is not in PATH"
+            which kubectl || echo "[DEBUG] kubectl is not in PATH"
+          '''
+
+          sh '''
             helm lint ./jellyfin && \
               helm template ./jellyfin -f ./jellyfin/values.yaml
           '''
