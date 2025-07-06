@@ -6,8 +6,11 @@ spec:
   entryPoints:
   - websecure
   routes:
-    - match: Host(`calibre.{{ .Values.domain }}`)
-      kind: Rule
-      services:
-      - name: calibre
-        port: {{ .Values.service.port }}
+  - match: Host(`calibre.{{ .Values.domain }}`)
+    kind: Rule
+    services:
+    - name: calibre
+      port: {{ .Values.service.port }}
+    middlewares:
+    - name: crowdsec
+      namespace: network
