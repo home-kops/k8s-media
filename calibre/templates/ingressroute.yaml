@@ -12,5 +12,5 @@ spec:
     - name: calibre
       port: {{ .Values.service.port }}
     middlewares:
-    - name: crowdsec
+    - name: bouncer
       namespace: network
