@@ -37,6 +37,7 @@ jobs:
   validate-kustomizations:
     needs: [ setup ]
     runs-on: ubuntu-latest
+    if: ${{ needs.setup.outputs.kustomization_dirs != '[]' }}
     strategy:
       matrix:
         value: ${{fromJSON(needs.setup.outputs.kustomization_dirs)}}
@@ -50,6 +51,7 @@ jobs:
   validate-helm:
     needs: [ setup ]
     runs-on: ubuntu-latest
+    if: ${{ needs.setup.outputs.helm_dirs != '[]' }}
     strategy:
       matrix:
         value: ${{fromJSON(needs.setup.outputs.helm_dirs)}}
