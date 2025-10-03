@@ -9,4 +9,4 @@ concurrency:
 
 jobs:
   validate-k8s-manifests:
-    uses: home-kops/actions/.github/workflows/validate-k8s-manifests@main
+    uses: home-kops/actions/.github/workflows/validate-k8s-manifests.yaml@main
