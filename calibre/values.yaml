@@ -11,15 +11,10 @@ deployment:
     repository: crocodilestick/calibre-web-automated
     tag: "V3.0.4"
   replicas: 1
-  env:
-  - name: PUID
-    value: "1000"
-  - name: PGID
-    value: "1000"
-  - name: CUSTOM_USER
-    value: <path:secret/data/media/calibre#user>
-  - name: PASSWORD
-    value: <path:secret/data/media/calibre#password>
+
+user:
+  username: <path:secret/data/media/calibre#user>
+  password: <path:secret/data/media/calibre#password>
 
 service:
   type: ClusterIP

@@ -23,10 +23,20 @@ spec:
         - name: web
           containerPort: 8083
         env:
-        {{- range .Values.deployment.env }}
-        - name: {{ .name }}
-          value: {{ .value | quote }}
-        {{- end }}
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: CUSTOM_USER
+          valueFrom:
+            secretKeyRef:
+              name: calibre
+              key: USER
+        - name: CUSTOM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: calibre
+              key: PASSWORD
         volumeMounts:
         - name: config
           mountPath: /config
