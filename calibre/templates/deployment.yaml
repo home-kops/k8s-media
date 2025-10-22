@@ -47,7 +47,7 @@ spec:
       volumes:
       - name: config
         persistentVolumeClaim:
-          claimName: calibre-config-pvc
+          claimName: calibre-config
       - name: library
         nfs:
           server: {{ .Values.nfs }}
