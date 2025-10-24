@@ -1,23 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: calibre
+  name: cwa
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      app: calibre
+      app: cwa
   template:
     metadata:
       labels:
-        app: calibre
+        app: cwa
     spec:
       {{- with .Values.deployment.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       containers:
-      - name: calibre
+      - name: cwa
         image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
         ports:
         - name: web
@@ -30,12 +30,12 @@ spec:
         - name: CUSTOM_USER
           valueFrom:
             secretKeyRef:
-              name: calibre
+              name: cwa
               key: USER
         - name: CUSTOM_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: calibre
+              name: cwa
               key: PASSWORD
         volumeMounts:
         - name: config
