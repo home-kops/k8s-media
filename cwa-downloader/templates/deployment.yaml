@@ -32,12 +32,12 @@ spec:
         - name: OPENVPN_USER
           valueFrom:
             secretKeyRef:
-              name: slskd
+              name: cwa-downloader
               key: OPENVPN_USER
         - name: OPENVPN_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: slskd
+              name: cwa-downloader
               key: OPENVPN_PASSWORD
         - name: DNS_KEEP_NAMESERVER
           value: "on"
