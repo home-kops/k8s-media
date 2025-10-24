@@ -5,6 +5,6 @@ helmGlobals:
   chartHome: ../
 
 helmCharts:
-- name: calibre
+- name: cwa
   namespace: media
   valuesFile: values.yaml

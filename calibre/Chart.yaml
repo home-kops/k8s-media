@@ -1,5 +1,0 @@
-apiVersion: v2
-name: calibre
-description: Deploy Calibre (pvc, deployment, service and ingressroute)
-type: application
-version: 0.1.0
