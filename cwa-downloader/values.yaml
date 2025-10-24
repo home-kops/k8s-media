@@ -10,5 +10,11 @@ service:
   type: ClusterIP
   port: 8084
 
+vpn:
+  image: qmcgaw/gluetun
+  imageTag: v3.40.0
+  user: <path:secret/data/p2p/vpn#user>
+  password: <path:secret/data/p2p/vpn#password>
+
 domain: <path:secret/data/infra#domain>
 nfs: <path:secret/data/infra#nfs>
