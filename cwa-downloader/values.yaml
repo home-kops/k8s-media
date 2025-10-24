@@ -1,0 +1,14 @@
+deployment:
+  nodeSelector:
+    size: s
+  image:
+    repository: ghcr.io/calibrain/calibre-web-automated-book-downloader
+    tag: "V0.2.3"
+  replicas: 1
+
+service:
+  type: ClusterIP
+  port: 8084
+
+domain: <path:secret/data/infra#domain>
+nfs: <path:secret/data/infra#nfs>

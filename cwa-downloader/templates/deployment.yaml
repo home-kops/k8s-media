@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cwa-downloader
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: cwa-downloader
+  template:
+    metadata:
+      labels:
+        app: cwa-downloader
+    spec:
+      {{- with .Values.deployment.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: cwa-downloader
+        image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+        ports:
+        - name: web
+          containerPort: 8084
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        volumeMounts:
+        - name: cwa-db
+          mountPath: /auth/app.db
+        - name: new-books
+          mountPath: /cwa-book-ingest
+      volumes:
+      - name: cwa-db
+        nfs:
+          server: {{ .Values.nfs }}
+          path: /volume1/kubernetes/config/calibre/app.db
+      - name: new-books
+        nfs:
+          server: {{ .Values.nfs }}
+          path: /volume1/data/media/books/new
