@@ -30,13 +30,14 @@ spec:
         volumeMounts:
         - name: cwa-db
           mountPath: /auth/app.db
+          subPath: app.db
         - name: new-books
           mountPath: /cwa-book-ingest
       volumes:
       - name: cwa-db
         nfs:
           server: {{ .Values.nfs }}
-          path: /volume1/kubernetes/config/calibre/app.db
+          path: /volume1/kubernetes/config/calibre
       - name: new-books
         nfs:
           server: {{ .Values.nfs }}
