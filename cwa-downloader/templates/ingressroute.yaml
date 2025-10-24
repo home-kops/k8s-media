@@ -11,6 +11,3 @@ spec:
     services:
     - name: cwa-downloader
       port: {{ .Values.service.port }}
-    middlewares:
-    - name: bouncer
-      namespace: network
